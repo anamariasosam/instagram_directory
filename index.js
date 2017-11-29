@@ -1,7 +1,20 @@
-var express = require("express"),
-  app = express(),
-  port = process.env.PORT || 3000;
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const keys = require("./config/keys");
 
-app.listen(port);
+require("./api/models/category");
+require("./api/models/subcategory");
 
-console.log("API server started on: " + port);
+const app = express();
+
+mongoose.Promise = global.Promise;
+mongoose.connect(keys.mongoURI);
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+require("./api/routes")(app);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT);
