@@ -1,16 +1,16 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema,
-  ObjectId = Schema.ObjectId;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const ObjectId = Schema.ObjectId
 
-var BusinessSchema = new Schema({
+const BusinessSchema = new Schema({
   name: String,
   phone: String,
   instagram: String,
-  subcategory: { type: ObjectId, ref: "Subcategory", required: true }
-});
+  subcategory: { type: ObjectId, ref: 'Subcategory', required: true },
+})
 
-BusinessSchema.virtual("url").get(function() {
-  return "/business/" + this._id;
-});
+BusinessSchema.virtual('url').get(function() {
+  return '/business/' + this._id
+})
 
-module.exports = mongoose.model("Business", BusinessSchema);
+module.exports = mongoose.model('Business', BusinessSchema)

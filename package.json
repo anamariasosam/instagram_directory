@@ -4,8 +4,15 @@
   "description": "An Instagram Stores Directory API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon server.js",
+    "precommit": "lint-staged",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write --no-semi --single-quote --trailing-comma all --print-width 100",
+      "git add"
+    ]
   },
   "author": "@anamariasosam",
   "license": "ISC",
@@ -15,6 +22,9 @@
     "mongoose": "^4.13.5"
   },
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "husky": "^0.14.3",
+    "lint-staged": "^5.0.0",
+    "nodemon": "^1.12.1",
+    "prettier": "^1.8.2"
   }
 }

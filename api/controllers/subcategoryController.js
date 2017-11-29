@@ -1,23 +1,28 @@
-var mongoose = require("mongoose"),
-  Subcategory = mongoose.model("Subcategory");
+const mongoose = require('mongoose')
+const Subcategory = mongoose.model('Subcategory')
+const Category = mongoose.model('Category')
 
 exports.findAll = function(req, res) {
-  Subcategory.find(function(err, subcategory) {
-    if (err) {
-      res
-        .status(500)
-        .send({ message: "Some error occurred while retrieving subcategory." });
-    } else {
-      res.send(subcategory);
-    }
-  });
-};
+  Subcategory.find()
+    .populate('category')
+    .then(subcategory => {
+      res.send(subcategory)
+    })
+    .catch(err => {
+      res.status(500).send({ message: err })
+    })
+}
 
 exports.create = function(req, res) {
-  var subcategory = new Subcategory(req.body);
+  const { subcategoryName, categoryId } = req.body
+  const category = new Category({ _id: categoryId })
+  const subcategory = new Subcategory({
+    name: subcategoryName,
+    category: category,
+  })
 
   subcategory.save(function(err, subcategory) {
-    if (err) res.send(err);
-    res.json(subcategory);
-  });
-};
+    if (err) res.send(err)
+    res.json(subcategory)
+  })
+}

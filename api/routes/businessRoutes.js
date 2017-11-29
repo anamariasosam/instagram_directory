@@ -1,10 +1,11 @@
-module.exports = app => {
-  var business = require("../controllers/businessController");
+const express = require('express')
+const business = require("../controllers/businessController")
 
-  app
-    .route("/business")
-    .get(business.findAll)
-    .post(business.create);
+const router = express.Router()
 
-  app.route("/business/:businessId").get(business.findOne);
-};
+router.get("/business", business.findAll)
+router.post("/business", business.create)
+
+router.get("/business/:businessId", business.findOne)
+
+module.exports = router

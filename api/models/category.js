@@ -1,12 +1,12 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-var CategorySchema = new Schema({
-  name: String
-});
+const CategorySchema = new Schema({
+  name: String,
+})
 
-CategorySchema.virtual("url").get(function() {
-  return "/category/" + this._id;
-});
+CategorySchema.virtual('url').get(function() {
+  return '/category/' + this._id
+})
 
-module.exports = mongoose.model("Category", CategorySchema);
+module.exports = mongoose.model('Category', CategorySchema)

@@ -1,10 +1,10 @@
-module.exports = app => {
-  var category = require("../controllers/categoryController");
+const express = require('express')
+const category = require("../controllers/categoryController")
 
-  app
-    .route("/categories")
-    .get(category.findAll)
-    .post(category.create);
+const router = express.Router()
 
-  app.route("/categories/:categoryId").get(category.findOne);
-};
+router.get("/categories/:categoryId", category.findOne)
+router.get("/categories", category.findAll)
+router.post("/categories", category.create)
+
+module.exports = router
