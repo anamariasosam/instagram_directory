@@ -3,6 +3,8 @@ module.exports = app => {
 
   app
     .route("/categories")
-    .get(category.list_all_categories)
-    .post(category.create_a_category);
+    .get(category.findAll)
+    .post(category.create);
+
+  app.route("/categories/:categoryId").get(category.findOne);
 };

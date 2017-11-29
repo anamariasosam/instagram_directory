@@ -3,6 +3,6 @@ module.exports = app => {
 
   app
     .route("/subcategories")
-    .get(subcategory.list_all_subcategories)
-    .post(subcategory.create_a_subcategory);
+    .get(subcategory.findAll)
+    .post(subcategory.create);
 };
