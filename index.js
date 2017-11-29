@@ -5,6 +5,7 @@ const keys = require("./config/keys");
 
 require("./api/models/category");
 require("./api/models/subcategory");
+require("./api/models/business");
 
 const app = express();
 
