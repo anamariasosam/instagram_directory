@@ -1,8 +1,9 @@
-module.exports = app => {
-  var subcategory = require("../controllers/subcategoryController");
+const express = require('express')
+const subcategory = require("../controllers/subcategoryController")
 
-  app
-    .route("/subcategories")
-    .get(subcategory.findAll)
-    .post(subcategory.create);
-};
+const router = express.Router()
+
+router.get("/subcategories", subcategory.findAll)
+router.post("/subcategories", subcategory.create)
+
+module.exports = router

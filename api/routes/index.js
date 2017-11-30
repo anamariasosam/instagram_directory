@@ -1,9 +1,13 @@
-const categoryRoutes = require("./categoryRoutes");
-const subcategoryRoutes = require("./subcategoryRoutes");
-const businessRoutes = require("./businessRoutes");
+const express = require('express')
 
-module.exports = app => {
-  categoryRoutes(app);
-  subcategoryRoutes(app);
-  businessRoutes(app);
-};
+const categoryRoutes = require("./categoryRoutes")
+const businessRoutes = require("./businessRoutes")
+const subcategoryRoutes = require("./subcategoryRoutes")
+
+const router = express.Router()
+
+router.use('/api', categoryRoutes)
+router.use('/api', subcategoryRoutes)
+router.use('/api', businessRoutes)
+
+module.exports = router
