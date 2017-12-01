@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Category = mongoose.model('Category')
+const Subcategory = mongoose.model('Subcategory')
 
 exports.findAll = function(req, res) {
   Category.find(function(err, category) {
@@ -31,4 +32,14 @@ exports.create = function(req, res) {
     if (err) res.send(err)
     res.json(category)
   })
+}
+
+exports.subcategories = function(req, res) {
+  Subcategory.find({ category: req.params.categoryId })
+    .then(subcategory => {
+      res.send(subcategory)
+    })
+    .catch(err => {
+      res.status(500).send({ message: err })
+    })
 }

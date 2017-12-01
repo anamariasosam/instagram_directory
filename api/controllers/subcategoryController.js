@@ -14,11 +14,11 @@ exports.findAll = function(req, res) {
 }
 
 exports.create = function(req, res) {
-  const { subcategoryName, categoryId } = req.body
+  const { name, categoryId } = req.body
   const category = new Category({ _id: categoryId })
   const subcategory = new Subcategory({
-    name: subcategoryName,
-    category: category,
+    name,
+    category,
   })
 
   subcategory.save(function(err, subcategory) {

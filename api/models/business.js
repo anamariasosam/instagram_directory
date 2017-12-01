@@ -6,7 +6,11 @@ const BusinessSchema = new Schema({
   name: String,
   phone: String,
   instagram: String,
-  subcategory: { type: ObjectId, ref: 'Subcategory', required: true },
+  subcategory: {
+    type: ObjectId,
+    ref: 'Subcategory',
+    required: true,
+  },
 })
 
 BusinessSchema.virtual('url').get(function() {

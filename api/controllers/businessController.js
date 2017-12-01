@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Business = mongoose.model('Business')
+const Subcategory = mongoose.model('Subcategory')
 
 exports.findAll = function(req, res) {
   Business.find(function(err, business) {
@@ -26,7 +27,13 @@ exports.findOne = function(req, res) {
 }
 
 exports.create = function(req, res) {
-  var business = new Business(req.body)
+  const { name, instagram, subcategoryId } = req.body
+  const subcategory = new Subcategory({ _id: subcategoryId })
+  const business = new Business({
+    name,
+    instagram,
+    subcategory,
+  })
 
   business.save(function(err, business) {
     if (err) res.send(err)
