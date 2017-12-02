@@ -1,8 +1,8 @@
 const express = require('express')
 
-const categoryRoutes = require("./categoryRoutes")
-const businessRoutes = require("./businessRoutes")
-const subcategoryRoutes = require("./subcategoryRoutes")
+const categoryRoutes = require('./categoryRoutes')
+const businessRoutes = require('./businessRoutes')
+const subcategoryRoutes = require('./subcategoryRoutes')
 
 const router = express.Router()
 

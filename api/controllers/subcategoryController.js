@@ -1,15 +1,13 @@
 const mongoose = require('mongoose')
 const Subcategory = mongoose.model('Subcategory')
 const Category = mongoose.model('Category')
+const utils = require('../handlers/utils')
 
 exports.findAll = function(req, res) {
   Subcategory.find()
     .populate('category')
-    .then(subcategory => {
-      res.send(subcategory)
-    })
-    .catch(err => {
-      res.status(500).send({ message: err })
+    .exec(function(err, subcategory) {
+      utils.show(res, err, subcategory)
     })
 }
 
@@ -22,7 +20,6 @@ exports.create = function(req, res) {
   })
 
   subcategory.save(function(err, subcategory) {
-    if (err) res.send(err)
-    res.json(subcategory)
+    utils.show(res, err, subcategory)
   })
 }

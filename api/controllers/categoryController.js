@@ -1,26 +1,17 @@
 const mongoose = require('mongoose')
 const Category = mongoose.model('Category')
 const Subcategory = mongoose.model('Subcategory')
+const utils = require('../handlers/utils')
 
 exports.findAll = function(req, res) {
   Category.find(function(err, category) {
-    if (err) {
-      res.status(500).send({ message: 'Some error occurred while retrieving category.' })
-    } else {
-      res.send(category)
-    }
+    utils.show(res, err, category)
   })
 }
 
 exports.findOne = function(req, res) {
-  Category.findById(req.params.categoryId, function(err, data) {
-    if (err) {
-      res.status(500).send({
-        message: 'Could not retrieve note with id ' + req.params.categoryId,
-      })
-    } else {
-      res.send(data)
-    }
+  Category.findById(req.params.categoryId, function(err, category) {
+    utils.show(res, err, category)
   })
 }
 
@@ -29,17 +20,12 @@ exports.create = function(req, res) {
   const category = new Category({ name })
 
   category.save(function(err, category) {
-    if (err) res.send(err)
-    res.json(category)
+    utils.show(res, err, category)
   })
 }
 
 exports.subcategories = function(req, res) {
-  Subcategory.find({ category: req.params.categoryId })
-    .then(subcategory => {
-      res.send(subcategory)
-    })
-    .catch(err => {
-      res.status(500).send({ message: err })
-    })
+  Subcategory.find({ category: req.params.categoryId }).exec(function(err, category) {
+    utils.show(res, err, category)
+  })
 }
