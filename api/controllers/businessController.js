@@ -18,11 +18,12 @@ exports.findOne = function(req, res) {
 }
 
 exports.create = function(req, res) {
-  const { name, instagram, subcategoryId } = req.body
+  const { instagram, phone, image, subcategoryId } = req.body
   const subcategory = new Subcategory({ _id: subcategoryId })
   const business = new Business({
-    name,
     instagram,
+    phone,
+    image,
     subcategory,
   })
 

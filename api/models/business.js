@@ -3,9 +3,9 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.ObjectId
 
 const BusinessSchema = new Schema({
-  name: String,
-  phone: String,
   instagram: String,
+  phone: String,
+  image: String,
   subcategory: {
     type: ObjectId,
     ref: 'Subcategory',

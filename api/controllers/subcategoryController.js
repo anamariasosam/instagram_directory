@@ -24,7 +24,6 @@ exports.create = function(req, res) {
 }
 
 exports.business = function(req, res) {
-  console.log(req.params.subcategoryId)
   Business.find({ subcategory: req.params.subcategoryId }).exec(function(err, business) {
     utils.show(res, err, business)
   })
