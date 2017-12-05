@@ -26,9 +26,9 @@ The API ships with several convenience commands (runnable via `npm`):
 ### Business
 | METHOD 	| ENDPOINT           	| USAGE                  	| RETURNS  	|
 |--------	|--------------------	|------------------------	|----------	|
-| GET    	| /api/business/{id} 	| Get a business         	| business 	|
-| GET    	| /api/business      	| Get a list of business 	| business 	|
-| POST   	| /api/business      	| Add a business         	| business 	|
+| GET    	| /api/businesses/{id} 	| Get a business         	| business 	|
+| GET    	| /api/businesses      	| Get a list of businesses 	| businesses 	|
+| POST   	| /api/businesses      	| Add a business         	| business 	|
 
 ### Categories
 
@@ -44,6 +44,7 @@ The API ships with several convenience commands (runnable via `npm`):
 |--------	|--------------------	|------------------------	|----------	|
 | GET    	| /api/subcategories      	| Get a list of subcategories 	| subcategories 	|
 | POST   	| /api/subcategories      	| Add a subcategories         	| subcategories 	|
+| GET   	| /subcategories/{id}/businesses      	| Get a subcategory related businesses         	| businesses 	|
 
 ## Contributing
 

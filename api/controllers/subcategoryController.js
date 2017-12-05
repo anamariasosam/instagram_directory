@@ -5,11 +5,9 @@ const Business = mongoose.model('Business')
 const utils = require('../handlers/utils')
 
 exports.findAll = function(req, res) {
-  Subcategory.find()
-    .populate('category')
-    .exec(function(err, subcategory) {
-      utils.show(res, err, subcategory)
-    })
+  Subcategory.find().exec(function(err, subcategory) {
+    utils.show(res, err, subcategory)
+  })
 }
 
 exports.create = function(req, res) {
