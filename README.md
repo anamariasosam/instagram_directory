@@ -27,6 +27,7 @@ The API ships with several convenience commands (runnable via `npm`):
 | METHOD 	| ENDPOINT           	| USAGE                  	| RETURNS  	|
 |--------	|--------------------	|------------------------	|----------	|
 | GET    	| /api/businesses/{id} 	| Get a business         	| business 	|
+| PUT    	| /api/businesses/{id} 	| Update a business      	| business 	|
 | GET    	| /api/businesses      	| Get a list of businesses 	| businesses 	|
 | POST   	| /api/businesses      	| Add a business         	| business 	|
 

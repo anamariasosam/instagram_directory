@@ -30,3 +30,12 @@ exports.create = function(req, res) {
     utils.show(res, err, business)
   })
 }
+
+exports.update = function(req, res) {
+  Business.findByIdAndUpdate({ _id: req.params.businessId }, req.body, { new: true }, function(
+    err,
+    business,
+  ) {
+    utils.show(res, err, business)
+  })
+}
