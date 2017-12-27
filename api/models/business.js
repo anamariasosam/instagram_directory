@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 const ObjectId = Schema.ObjectId
 
 const BusinessSchema = new Schema({
-  instagram: String,
+  name: String,
   phone: String,
   image: String,
   subcategory: {
