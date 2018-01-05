@@ -1,15 +1,20 @@
 const db = require('../db/db')
 const ObjectId = require('mongoose').Types.ObjectId
 const assert = require('assert')
+
+const Category = require('../api/models/category')
 const Subcategory = require('../api/models/subcategory')
 const Business = require('../api/models/business')
+
 const subcategoriesData = require('./subcategories.json')
 const businessesData = require('./businesses.json')
 
 // Add the categoryId to all subcategories
 function addCategoryId(subcategories) {
-  subcategories.map(subcategory => {
-    subcategory.category = new ObjectId('5a26f20c465da00935ebc239')
+  return subcategories.map(async subcategory => {
+    const { _id: id } = await Category.findOne({ name: 'Tiendas' })
+    subcategory.category = id
+    return subcategory
   })
 }
 
@@ -23,19 +28,13 @@ function addsubcategoriesId(businesses) {
 }
 
 db.then(async () => {
-  Subcategory.find().remove()
-  addCategoryId(subcategoriesData)
-  Subcategory.insertMany(data, function(err, r) {
-    db.close()
-    console.log(r.insertedCount + ' collections added')
-    process.exit(1)
-  })
+  await Subcategory.find().remove()
+  const subcategories = await Promise.all(addCategoryId(subcategoriesData))
+  await Subcategory.insertMany(subcategories)
 
   await Business.find().remove()
-  const data = await Promise.all(addsubcategoriesId(businessesData))
-  await Business.insertMany(data, function(err, r) {
-    db.close()
-    console.log(r.insertedCount + ' collections added')
-    process.exit(1)
-  })
+  const businesses = await Promise.all(addsubcategoriesId(businessesData))
+  await Business.insertMany(businesses)
+
+  process.exit(1)
 })
