@@ -16,28 +16,26 @@ function addCategoryId(subcategories) {
 // Add the subcategoryId to all businesses
 function addsubcategoriesId(businesses) {
   return businesses.map(async business => {
-    const { _id: id } = await Subcategory.findOne({ name: business.subcategory }).select('_id')
+    const { _id: id } = await Subcategory.findOne({ name: business.subcategory })
     business.subcategory = id
     return business
   })
 }
 
-// create the collections for a specific model
-function createCollections(model, data, number) {
-  return model.collection.insertMany(data, function(err, r) {
+db.then(async () => {
+  Subcategory.find().remove()
+  addCategoryId(subcategoriesData)
+  Subcategory.insertMany(data, function(err, r) {
     db.close()
     console.log(r.insertedCount + ' collections added')
     process.exit(1)
   })
-}
-
-db.then(async () => {
-  // Subcategory.find().remove();
-  // addCategoryId(subcategoriesData)
-  // createCollections(Subcategory, subcategoriesData, 17)
 
   await Business.find().remove()
   const data = await Promise.all(addsubcategoriesId(businessesData))
-  console.log(data)
-  await createCollections(Business, data, 141)
+  await Business.insertMany(data, function(err, r) {
+    db.close()
+    console.log(r.insertedCount + ' collections added')
+    process.exit(1)
+  })
 })
