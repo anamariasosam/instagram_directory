@@ -1,53 +1,70 @@
 [
   {
-    "name": "Bebés & Niños"
+    "name": "Bebés & Niños",
+    "slug": "bebes-y-ninos"
   },
   {
-    "name": "Bolsos"
+    "name": "Bolsos",
+    "slug": "bolsos"
   },
   {
-    "name": "Calzado femenino"
+    "name": "Calzado femenino",
+    "slug": "calzado-femenino"
   },
   {
-    "name": "Celulares"
+    "name": "Celulares",
+    "slug": "celulares"
   },
   {
-    "name": "Cosméticos"
+    "name": "Cosméticos",
+    "slug": "cosmeticos"
   },
   {
-    "name": "Floristería"
+    "name": "Floristería",
+    "slug": "floristeria"
   },
   {
-    "name": "Hogar"
+    "name": "Hogar",
+    "slug": "hogar"
   },
   {
-    "name": "Joyería"
+    "name": "Joyería",
+    "slug": "joyeria"
   },
   {
-    "name": "Lencería"
+    "name": "Lencería",
+    "slug": "lenceria"
   },
   {
-    "name": "Mascotas"
+    "name": "Mascotas",
+    "slug": "mascotas"
   },
   {
-    "name": "Papelería"
+    "name": "Papelería",
+    "slug": "papeleria"
   },
   {
-    "name": "Repostería"
+    "name": "Repostería",
+    "slug": "reposteria"
   },
   {
-    "name": "Ropa de deportiva"
+    "name": "Ropa deportiva",
+    "slug": "ropa-deportiva"
   },
   {
-    "name": "Ropa para hombres"
+    "name": "Hombres",
+    "slug": "hombres"
   },
   {
-    "name": "Ropa para mujeres"
+    "name": "Mujeres",
+    "slug": "mujeres"
   },
   {
-    "name": "Tienda de diseño"
+    "name": "Tiendas de diseño",
+    "slug": "tiendas-de-diseno"
   },
   {
-    "name": "Vestidos de baño"
+    "name": "Vestidos de baño",
+    "slug": "vestidos-de-bano"
   }
 ]

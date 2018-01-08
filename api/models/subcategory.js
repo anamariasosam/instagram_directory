@@ -4,6 +4,7 @@ const ObjectId = Schema.ObjectId
 
 const SubcategorySchema = new Schema({
   name: String,
+  slug: String,
   category: {
     type: ObjectId,
     ref: 'Category',
