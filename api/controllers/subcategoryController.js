@@ -9,17 +9,16 @@ exports.findAll = function(req, res) {
   })
 }
 
-exports.business = function(req, res) {
+exports.findOne = function(req, res) {
   Subcategory.findOne({ slug: req.params.subcategorySlug }).exec(function(err, subcategory) {
-    if (!subcategory) {
-      res.status(500).send({ message: 'Some error occurred while retrieving data.' })
-    } else {
-      const id = subcategory._id
-      Business.find({ subcategory: id })
-        .sort({ name: 1 })
-        .exec(function(err, business) {
-          utils.show(res, err, business)
-        })
-    }
+    utils.show(res, err, subcategory)
   })
+}
+
+exports.business = function(req, res) {
+  Business.find({ subcategory: req.params.subcategoryId })
+    .sort({ name: 1 })
+    .exec(function(err, business) {
+      utils.show(res, err, business)
+    })
 }
