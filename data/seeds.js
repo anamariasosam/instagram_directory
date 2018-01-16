@@ -1,6 +1,5 @@
 const db = require('../db/db')
 const ObjectId = require('mongoose').Types.ObjectId
-const assert = require('assert')
 
 const Category = require('../api/models/category')
 const Subcategory = require('../api/models/subcategory')
