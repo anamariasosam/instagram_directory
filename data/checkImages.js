@@ -1,23 +1,37 @@
-var request = require('request')
+const request = require('request')
 const db = require('../db/db')
+const url = require('openurl')
 
 const Business = require('../api/models/business')
 
-function imageUrlExist(url) {
-  return request(url, function(error, response, body) {
-    if (response.statusCode === 404) {
-      return true
-    }
+db.then(() => {
+  Business.find((err, businesses) => {
+    businesses.map((business, index) => {
+      request(business.image, (error, response, body) => {
+        if (response.statusCode == 404) {
+          findStore(business._id)
+        }
+      })
+    })
+  })
+})
+
+function findStore(id) {
+  Business.findById(id, 'name', (err, business) => {
+    url.open(`https://instagram.com/${business.name}`)
   })
 }
 
-db.then(() => {
-  Business.find(function(err, business) {
-    for (var i = 0; i < business.length; i++) {
-      var image = business[i].image
-      var id = business[i]._id
-
-      console.log(imageUrlExist(image))
-    }
-  })
-})
+// request('https://www.instagram.com/afrosouloficial/',
+//   (error, data, body) => {
+//     var path = "/Users/anasosa/Desktop/index.html";
+//
+//     fs.writeFile(path,data, function(error) {
+//       if (error) {
+//         console.error("write error:  " + error.message);
+//       } else {
+//         console.log("Successful Write to " + path);
+//       }
+//     });
+//   }
+// )
