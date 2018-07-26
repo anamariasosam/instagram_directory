@@ -4,15 +4,11 @@
   "description": "An Instagram Stores Directory API",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "precommit": "lint-staged",
+    "client": "npm run start --prefix client",
+    "server": "NODE_ENV=development nodemon server.js",
+    "dev": "NODE_ENV=development concurrently \"npm run server\" \"npm run client\"",
+    "precommit": "pretty-quick --staged",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "prettier --write --no-semi --single-quote --trailing-comma all --print-width 100",
-      "git add"
-    ]
   },
   "author": "@anamariasosam",
   "license": "ISC",
@@ -24,10 +20,11 @@
     "request": "^2.83.0"
   },
   "devDependencies": {
+    "concurrently": "^3.6.1",
     "husky": "^0.14.3",
-    "lint-staged": "^5.0.0",
     "nodemon": "^1.12.1",
     "openurl": "^1.1.1",
-    "prettier": "^1.8.2"
+    "prettier": "^1.8.2",
+    "pretty-quick": "^1.6.0"
   }
 }
